@@ -56,13 +56,17 @@ namespace word2pdf
 
 
 			//chart.ChartAreas[0].AxisX.Minimum = 1;
-			chart.ChartAreas[0].AxisY.Minimum = 1;
-			chart.ChartAreas[0].AxisY.LabelStyle.Enabled = false;
-
 			chart.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+			chart.ChartAreas[0].AxisX.LabelStyle.Font = 
+				new Font(new FontFamily("微软雅黑"), 8f);
+			chart.ChartAreas[0].AxisX.LabelStyle.TruncatedLabels = false;
+
+			chart.ChartAreas[0].AxisY.Minimum = 1;
+			//chart.ChartAreas[0].AxisY.LabelStyle.Enabled = false;
 			chart.ChartAreas[0].AxisY.MajorGrid.LineWidth = 1;
 			chart.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.LightGray;
 			//chart.ChartAreas[0].AxisY.MajorGrid.LineDashStyle = ChartDashStyle.Dot;
+			
 
 			int m = max(dt);
 			chart.ChartAreas[0].AxisY.Maximum = Math.Max(7, m);
@@ -164,29 +168,6 @@ namespace word2pdf
 				}
 			}
 
-			//int cols = dt.Columns.Count;
-			//for (int i = 1; i < cols; i++)
-			//{
-			//    chart.Series.Add("" + i);
-			//    chart.Series[i - 1].Points.AddXY(dt.Columns[i].ColumnName);
-			//    chart.Series[i - 1].Points.DataBindXY(
-			//        dt.DefaultView, dt.Columns[0].ColumnName,
-			//        dt.DefaultView, dt.Columns[i].ColumnName
-			//        );
-			//    chart.Series[i - 1].Name = dt.Columns[i].ColumnName;
-			//    chart.Series[i - 1].IsVisibleInLegend = true;
-
-			//    chart.Series[i - 1].ChartType = t;
-			//    if (chartType == "radar")
-			//    {
-			//        chart.Series[i - 1].CustomProperties = 
-			//            "RadarDrawingStyle=Line, CircularLabelsStyle=Circular";
-			//        chart.Series[i - 1].BorderWidth = 5;
-			//    }
-			//    chart.ChartAreas[0].AxisX.LabelStyle.Font = new Font("Microsoft Sans Serif", 8.0f);
-			//}
-
-			//chart.SaveImage("e:\\chart.jpg", ChartImageFormat.Jpeg);
 			return chart;
 		}
 
@@ -232,70 +213,6 @@ namespace word2pdf
 			dt.Rows.Add("标准化运营", 3.8, 1.1);
 
 			createChart("vbar", dt);
-
-
-			//            Chart chart = new Chart();
-			//            chart.ChartAreas.Add(new ChartArea());
-			//            chart.Width = 800;
-			//            chart.Height = 800;
-
-			//            chart.Legends.Add("legend");
-			//            chart.Legends[0].Enabled = true;
-
-
-
-			//            //格式化标签和间隔
-			//            //chart.ChartAreas[0].AxisX.LabelStyle.Format = @"{yyyy-MM-dd HH时}";
-			//            //chart.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Hours;
-			////			chart.ChartAreas[0].AxisX.Interval = 1;
-
-
-
-			//            //绑定数据
-			//            chart.Series.Add("a");
-			//            chart.Series[0].BorderWidth = 100;
-			//            chart.Series[0].ChartType = SeriesChartType.Radar;
-			//            chart.Series[0].Points.DataBindXY(dt.DefaultView, "Competence",
-			//                dt.DefaultView, "Value");
-			//            //chart.Series[0].IsValueShownAsLabel = true;
-			//            //chart.Series[0].XValueType = ChartValueType.Date;
-
-			//            chart.Series[0].BorderWidth = 10;
-			//            chart.Series[0].Name = "ge ren";
-			//            chart.Series[0].IsVisibleInLegend = true;
-
-			//            chart.Series.Add("b");
-			//            chart.Series[0].BorderWidth = 100;
-			//            chart.Series[0].ChartType = SeriesChartType.Radar;
-			//            chart.Series[0].Points.DataBindXY(dt.DefaultView, "Competence",
-			//                dt.DefaultView, "Value2");
-			//            //chart.Series["b"].IsValueShownAsLabel = true;
-			//            chart.Series["b"].Name = "ge ren2";
-
-
-
-			//            chart.SaveImage("e:\\chart.jpg",ChartImageFormat.Jpeg);
-
-
-
-
-
-			//Report2BLL reportBLL = new Report2BLL();
-			//Random rd = new Random(175);
-			//for (int i = 0; i < dtPhone.Rows.Count; i++)
-			//{
-			//    Chart2.Series.Add(dtPhone.Rows[i]["PhoneName"].ToString());//
-			//    int phoneID = Int32.Parse(dtPhone.Rows[i]["PhoneID"].ToString());
-			//    DataTable dt = reportBLL.GetFeatureScore(phoneID);
-			//    Chart2.Series[i].Points.DataBind(dt.DefaultView, "FeatureName", "Score", "LegendText=FeatureName,YValues=Score,ToolTip=Score");
-			//    Chart2.Series[i].ChartType = SeriesChartType.Radar;
-			//    Color color = Color.FromArgb(rd.Next(0, 255), rd.Next(0, 255), rd.Next(0, 255));
-			//    Chart2.Series[i].BorderColor = color;
-			//    Chart2.Series[i].BorderWidth = 2;
-			//    Chart2.Series[i].Color = Color.Transparent;//设置Radar区域颜色透明，以防止前面的遮挡后面的显示
-			//    Chart2.Series[i].IsValueShownAsLabel = true;//图表显示具体的数值
-			//}
-			//Chart2.DataBind();
 		}
 
 	}

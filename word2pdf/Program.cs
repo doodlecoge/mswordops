@@ -20,31 +20,35 @@ namespace word2pdf
 		{
 			try
 			{
-				foo();
+				foo(args);
 				Console.Out.Write(0);
 			}
 			catch (Exception e)
 			{
-				Console.Out.Write(e.Message);
-				Console.Out.Write(e.StackTrace);
+				Console.Out.WriteLine("==================================================");
+				Console.Out.WriteLine(e.Message);
+				Console.Out.WriteLine(e.StackTrace);
+				Console.Out.WriteLine();
 			}
-
-			//WordTest.foo2();
-
-			//WordChart.addChart();
-			//ChartCreator.foo();
-
 		}
 
-		static void foo()
+		static void foo(string[] args)
 		{
 			XmlDocument xDoc = new XmlDocument();
-			//xDoc.Load("C:\\Users\\hch\\Desktop\\tmp\\input.xml");
+			if (args.Length == 1)
+			{
+				string filename = Path.GetFullPath(args[0]);
+				xDoc.Load(filename);
+			}
+			else
+			{
+				//xDoc.Load("C:\\Users\\hch\\Desktop\\tmp\\input.xml");
 
-			Stream inp = Console.OpenStandardInput();
-			StreamReader sr = new StreamReader(inp, Encoding.UTF8);
-			xDoc.Load(sr);
-
+				Stream inp = Console.OpenStandardInput(1);
+				StreamReader sr = new StreamReader(inp, Encoding.UTF8);
+				xDoc.Load(sr);
+			}
+			
 			XmlElement root = xDoc.DocumentElement;
 			XmlNodeList children = root.ChildNodes;
 
@@ -106,43 +110,10 @@ namespace word2pdf
 					}
 
 					br.addChart2(node.Attributes["k"].Value, node.Attributes["v"].Value, data);
-					//br.addRaderChart("\\endofdoc", data);
-
-
-
-					//Console.Out.WriteLine(txt);
 				}
 				else if (node.Name == "table")
 				{
 					br.addTable2(node);
-					//System.Data.DataTable dt = new System.Data.DataTable();
-
-					//int i = 0;
-					//foreach (XmlNode cnode in node.ChildNodes)
-					//{
-					//    if (cnode.Name != "tr") continue;
-
-					//    if (i == 0)
-					//    {
-					//        foreach (XmlNode td in cnode.ChildNodes)
-					//        {
-					//            dt.Columns.Add(new System.Data.DataColumn(td.InnerText.Trim()));
-					//        }
-					//    }
-					//    else
-					//    {
-					//        System.Data.DataRow dr = dt.Rows.Add();
-					//        int c = 0;
-					//        foreach (XmlNode td in cnode.ChildNodes)
-					//        {
-					//            dr[c++] = td.InnerText;
-					//        }
-					//    }
-
-					//    i++;
-					//}
-
-					//br.addTable(node.Attributes["k"].Value, dt);
 				}
 				else if(node.Name == "disc")
 				{
