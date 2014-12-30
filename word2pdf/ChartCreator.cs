@@ -164,7 +164,13 @@ namespace word2pdf
 
 				for (int j = 1; j < cols; j++)
 				{
-					s.Points.AddXY(dt.Columns[j].ColumnName, dt.Rows[i][j]);
+					string str = dt.Columns[j].ColumnName;
+					if(chartType == "radar" && str.Length > 10) 
+					{
+						str = str.Substring(0, str.Length / 2) + "\n" +
+							str.Substring(str.Length / 2);
+					}
+					s.Points.AddXY(str, dt.Rows[i][j]);
 				}
 			}
 
