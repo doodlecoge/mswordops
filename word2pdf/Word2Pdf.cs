@@ -33,8 +33,8 @@ namespace word2pdf
 			object Encoding = Office.MsoEncoding.msoEncodingUTF8;
 			object varMissing = Type.Missing;
 
-			Word.Application app = null;
-			Word.Document doc = null;
+			Word._Application app = null;
+			Word._Document doc = null;
 
 			try
 			{

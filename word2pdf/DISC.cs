@@ -514,7 +514,7 @@ namespace word2pdf
 				source.Save(img, System.Drawing.Imaging.ImageFormat.Jpeg);
 				return img;
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				//Console.Out.WriteLine(ex.Message);
 				//Console.Out.WriteLine(ex.StackTrace);

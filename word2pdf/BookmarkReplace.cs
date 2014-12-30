@@ -19,8 +19,8 @@ namespace word2pdf
 {
 	class BookmarkReplace
 	{
-		private Word.Application wApp = null;
-		private Word.Document wDoc = null;
+		private Word._Application wApp = null;
+		private Word._Document wDoc = null;
 		private object nothing = Missing.Value;
 
 		public void openDocument(string doc)
